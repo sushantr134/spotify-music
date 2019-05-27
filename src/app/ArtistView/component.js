@@ -4,7 +4,11 @@ import styles from "./style.scss";
 import Loader from "../Loader/component";
 import { Icon } from "antd";
 
-const ArtistPanel = ({ dataObj }) => {
+const ArtistPanel = ({ dataObj, artistAlbumHandler, artistBackgroundHandler, token }) => {
+  const artistHandler = (artistName, artistPic, artistId, tokenid) => {
+    artistBackgroundHandler({ Name: artistName, pic: artistPic });
+    artistAlbumHandler(encodeURIComponent(artistId), tokenid);
+  };
   return (
     <div className={styles.artistInfoContainer}>
       {dataObj.images[0] !== undefined ? (
@@ -14,7 +18,7 @@ const ArtistPanel = ({ dataObj }) => {
       )}
       <ul className={styles.artistViewInfo}>
         <li>
-          <a href={""}>{dataObj.name}</a>
+          <a onClick={() => artistHandler(dataObj.name, dataObj.images[0].url.toString(), dataObj.id, token)}>{dataObj.name}</a>
         </li>
         <li>
           <span>Genre</span>&nbsp;:&nbsp;<span>{dataObj.genres.slice(0, 3)}</span>
@@ -40,7 +44,15 @@ export default class ArtistView extends React.PureComponent {
         <div className={styles.artistListContainer}>
           {this.props.artistData != null ? (
             this.props.artistData.items.map((artistObj, i) => {
-              return <ArtistPanel key={i} dataObj={artistObj} />;
+              return (
+                <ArtistPanel
+                  key={i}
+                  artistBackgroundHandler={this.props.artistBackgroundHandler}
+                  dataObj={artistObj}
+                  token={this.props.token}
+                  artistAlbumHandler={this.props.albumHandler}
+                />
+              );
             })
           ) : (
             <Loader />

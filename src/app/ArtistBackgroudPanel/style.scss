@@ -1,1 +1,30 @@
 @import "../app-global.module.scss";
+
+.artistPicBackgroundContainer {
+  width: 100%;
+  height: 35vh;
+  @include AlignTop;
+  flex-direction: column;
+  align-items: flex-start;
+  background-size: auto;
+}
+
+.overlay {
+  width: 100%;
+  height: 100%;
+  padding: 2em;
+  background: rgba(1, 1, 1, 0.5);
+  h1,
+  h3 {
+    color: white;
+    padding: 0;
+    margin: 0;
+  }
+  h1 {
+    font-size: 3vmax;
+    padding-bottom: 0.44em;
+  }
+  h3 {
+    font-size: 2.2vmax;
+  }
+}

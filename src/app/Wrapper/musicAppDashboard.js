@@ -10,33 +10,50 @@ import styles from "./dashboardStyle.scss";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { searchArtist } from "../../redux/actions/Dashboard/search/action";
-
+import { getArtistAlbum } from "../../redux/actions/Dashboard/albums/action";
+import Loader from "../Loader/component";
 class AppDashboard extends React.PureComponent {
   constructor(props) {
     super(props);
+    this.state = {
+      artistBackgroundData: {
+        artistTagName: "",
+        artistBackgroundImage: ""
+      }
+    };
+    this.artistBackgroundHandler = this.artistBackgroundHandler.bind(this);
   }
+  artistBackgroundHandler = obj => {
+    this.setState({
+      artistBackgroundData: {
+        artistTagName: obj.Name,
+        artistBackgroundImage: obj.pic
+      }
+    });
+  };
   render() {
     return (
       <>
-        <SearchBar
-          token={this.props.access_token}
-          searchHandler={this.props.onSearchArtist}
-        />
+        <SearchBar token={this.props.access_token} searchHandler={this.props.onSearchArtist} />
         <section className={styles.appContainer}>
           <ArtistView
             token={this.props.access_token}
-            artistData={
-              this.props.searchData.searchResult
-                ? this.props.searchData.searchResult
-                : null
-            }
+            albumHandler={this.props.onSearchArtistAlbum}
+            artistBackgroundHandler={this.artistBackgroundHandler}
+            artistData={this.props.searchData.searchResult ? this.props.searchData.searchResult : null}
           />
-          <ArtistBackgroundPanel>
-            <>
-              <AlbumsView />
-              <SongsContainer />
-            </>
-          </ArtistBackgroundPanel>
+          {this.props.albumsObj && this.props.albumsObj.albumsData ? (
+            <ArtistBackgroundPanel
+              artistTagName={this.state.artistBackgroundData.artistTagName}
+              artistBackgroundPic={this.state.artistBackgroundData.artistBackgroundImage}>
+              <section className={styles.mainAlbumsContainer}>
+                <AlbumsView albumsData={this.props.albumsObj.albumsData.data.items} />
+                <SongsContainer />
+              </section>
+            </ArtistBackgroundPanel>
+          ) : (
+            <Loader />
+          )}
         </section>
       </>
     );
@@ -45,14 +62,16 @@ class AppDashboard extends React.PureComponent {
 
 const MapStateToProps = state => {
   return {
-    searchData: state.search
+    searchData: state.search,
+    albumsObj: state.albums
   };
 };
 
 const MapDispatchToProps = dispatch => {
   return bindActionCreators(
     {
-      onSearchArtist: (searchQuery, token) => searchArtist(searchQuery, token)
+      onSearchArtist: (searchQuery, token) => searchArtist(searchQuery, token),
+      onSearchArtistAlbum: (artistID, token) => getArtistAlbum(artistID, token)
     },
     dispatch
   );
