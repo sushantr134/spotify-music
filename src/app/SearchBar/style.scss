@@ -1,0 +1,22 @@
+@import "../app-global.module.scss";
+
+.searchContainer {
+  padding: 1em;
+  @include AlignTop;
+  align-items: flex-start;
+  box-shadow: $primary-box-shadow;
+
+  .searchInput {
+    input[type="text"] {
+      border-radius: 5.5em;
+      background: $primary-bg-one-color;
+      color: black;
+      &::placeholder {
+        color: black;
+      }
+    }
+    i {
+      color: black;
+    }
+  }
+}

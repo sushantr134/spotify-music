@@ -1,0 +1,12 @@
+export const USER_AUTH_LOGIN_TOKEN = "USER_AUTH_LOGIN_TOKEN";
+export const GET_ALBUMS_LIST = "GET_ALBUMS_LIST";
+export const GET_ALBUMS_TRACKS = "GET_ALBUMS_TRACKS";
+export const SEARCH_ARTIST = "SEARCH_ARTIST";
+
+export const PLAY_SONG = "PLAY_SONG";
+export const PAUSE_SONG = "PAUSE_SONG";
+export const RESUME_SONG = "RESUME_SONG";
+export const NEXT_SONG = "NEXT_SONG";
+export const PREVIOUS_SONG = "PREVIOUS_SONG";
+
+export const NOT_FOUND_ERROR = "NOT_FOUND_ERROR";

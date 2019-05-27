@@ -1,0 +1,62 @@
+@import "../app-global.module.scss";
+
+.artistContainer {
+  width: 100%;
+  height: 100%;
+  max-height: 80vh;
+  background: $primary-bg-one-color;
+  @include AlignTop;
+  flex-direction: column;
+  align-items: center;
+
+  .artistListContainer {
+    width: 92%;
+    height: inherit;
+    margin-top: 2em;
+    @include AlignTop;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
+
+    .artistInfoContainer {
+      margin-bottom: 1.5em;
+      width: 100%;
+      height: max-content;
+      max-height: 80px;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+      background-color: #ffffff;
+      padding: 0.2em;
+      @include gridMaker(1fr 3fr, "", 1em);
+      justify-items: center;
+      img {
+        width: 80%;
+        height: 100%;
+        max-width: 100px;
+        object-fit: contain;
+        @include AlignCenter;
+        align-items: center;
+      }
+      .artistViewInfo {
+        list-style: none;
+        width: inherit;
+        li {
+          margin-bottom: 0.1em;
+          &:first-child {
+            font-size: 13px;
+            margin-left: 0.2em;
+            font-weight: 100;
+            color: $primary-bg-two-color;
+            letter-spacing: 0.5px;
+          }
+          &:not(:first-child) {
+            font-size: 10px;
+            span {
+              margin-right: 0.2em;
+              margin-left: 0.2em;
+            }
+          }
+        }
+      }
+    }
+  }
+}

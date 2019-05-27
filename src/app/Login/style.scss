@@ -1,0 +1,35 @@
+@import "../app-global.module.scss";
+
+.loginContainer {
+  @include AlignCenter;
+  align-items: center;
+  flex-direction: column;
+  padding: 5%;
+  width: 100%;
+  height: 100%;
+
+  picture {
+    margin-bottom: 1.5em;
+    @include AlignCenter;
+    align-items: center;
+    img {
+      width: 100%;
+      max-width: 360px;
+    }
+  }
+  a {
+    margin-bottom: 1.5em;
+    margin-top: 0.55em;
+    text-align: center;
+
+    &:hover {
+      color: $primary-link-color !important;
+      border-color: $primary-link-color;
+    }
+  }
+
+  h5 {
+    font-weight: 100;
+    text-align: center;
+  }
+}

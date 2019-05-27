@@ -1,0 +1,10 @@
+node_modules
+
+
+build
+
+*.env
+
+yarn.lock
+
+.vscode
