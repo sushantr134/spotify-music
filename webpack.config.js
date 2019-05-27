@@ -13,6 +13,8 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const autoprefixer = require("autoprefixer");
 const Dotenv = require("dotenv-webpack");
+const WorkboxPlugin = require("workbox-webpack-plugin");
+const WebpackPwaManifest = require("webpack-pwa-manifest");
 
 const isDevelopment = process.env.NODE_ENV === "development" ? true : false;
 
@@ -83,8 +85,25 @@ module.exports = {
     }),
     new webpack.HotModuleReplacementPlugin(),
     new CleanWebpackPlugin(),
-    new compressionPlugin(),
-    new Dotenv()
+    new Dotenv(),
+    new WorkboxPlugin.GenerateSW({
+      clientsClaim: true,
+      skipWaiting: true
+    }),
+    new WebpackPwaManifest({
+      filename: "manifest.json",
+      name: "Spotify Music App",
+      short_name: "SpotifyMini",
+      description: "My Spotify-music app based on spotify-web-api and react.js",
+      background_color: "#a574ff",
+      crossorigin: "use-credentials",
+      icons: [
+        {
+          src: path.resolve("static/logo.png"),
+          sizes: [96, 128, 192, 256, 384, 512]
+        }
+      ]
+    })
   ],
   optimization: {
     minimizer: [
