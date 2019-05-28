@@ -15,7 +15,7 @@ export default class SongPlayer extends React.PureComponent {
       <section className={styles.playerContainer}>
         <div className={styles.albumImage} />
         <div className={styles.playerOptions}>
-          <audio controls src={this.props.song} />
+          <audio autoPlay={true} controls src={this.props.song} />
         </div>
       </section>
     );
