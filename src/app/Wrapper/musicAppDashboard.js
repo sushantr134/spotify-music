@@ -13,6 +13,8 @@ import { searchArtist } from "../../redux/actions/Dashboard/search/action";
 import { getArtistAlbum } from "../../redux/actions/Dashboard/albums/action";
 import { getTracks } from "../../redux/actions/Dashboard/tracks/action";
 import Loader from "../Loader/component";
+import SongPlayer from "../SongPlayer/component";
+import { message } from "antd";
 class AppDashboard extends React.PureComponent {
   constructor(props) {
     super(props);
@@ -20,6 +22,9 @@ class AppDashboard extends React.PureComponent {
       artistBackgroundData: {
         artistTagName: "",
         artistBackgroundImage: ""
+      },
+      playerSong: {
+        songURL: ""
       }
     };
     this.artistBackgroundHandler = this.artistBackgroundHandler.bind(this);
@@ -31,6 +36,17 @@ class AppDashboard extends React.PureComponent {
         artistBackgroundImage: obj.pic
       }
     });
+  };
+  songHandler = song => {
+    if (typeof song !== undefined) {
+      this.setState({
+        playerSong: {
+          songURL: song
+        }
+      });
+    } else {
+      return message.warning("preview_url is not defined to play the song");
+    }
   };
   render() {
     return (
@@ -53,13 +69,16 @@ class AppDashboard extends React.PureComponent {
                   token={this.props.access_token}
                   fetchSongs={this.props.onTracksSearch}
                 />
-                <SongsContainer songsData={this.props.songsObj.tracksData} />
+                <SongsContainer songsData={this.props.songsObj.tracksData} songHandler={this.songHandler} />
               </section>
             </ArtistBackgroundPanel>
           ) : (
             <Loader />
           )}
         </section>
+        <>
+          <SongPlayer song={this.state.playerSong.songURL} />
+        </>
       </>
     );
   }

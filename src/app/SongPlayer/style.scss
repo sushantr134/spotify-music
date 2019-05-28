@@ -1,1 +1,10 @@
 @import "../app-global.module.scss";
+
+.playerContainer {
+  width: 100%;
+  background: $primary-bg-player-color;
+  padding: 0.5em;
+  color: white;
+  @include AlignCenter;
+  align-items: center;
+}

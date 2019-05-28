@@ -22,7 +22,7 @@ export default class SongsContainer extends React.PureComponent {
           this.props.songsData.items.map(songObj => {
             let timeInMinSecObj = this.msTominSec(songObj.duration_ms);
             return (
-              <div key={songObj.id} className={styles.songsContainer}>
+              <div key={songObj.id} className={styles.songsContainer} onClick={() => this.props.songHandler(songObj.preview_url)}>
                 <h1>{songObj.name}</h1>
                 <label>
                   {timeInMinSecObj.minSecTime.minutes}:{timeInMinSecObj.minSecTime.seconds}
