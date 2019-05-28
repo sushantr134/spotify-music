@@ -1,7 +1,7 @@
 # spotify-music
 A small app based on Spotify API
 
-<img src="https://i.ibb.co/L0TNfpV/Screenshot-93.png" alt="Screenshot-93" border="0">
+<img src="https://i.ibb.co/nfF6M2v/Screenshot-95.png" alt="Screenshot-95" border="0">
 
 <h1>Steps to run this App on your local machine</h1>
 
