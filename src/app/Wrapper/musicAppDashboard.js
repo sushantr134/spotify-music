@@ -11,6 +11,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { searchArtist } from "../../redux/actions/Dashboard/search/action";
 import { getArtistAlbum } from "../../redux/actions/Dashboard/albums/action";
+import { getTracks } from "../../redux/actions/Dashboard/tracks/action";
 import Loader from "../Loader/component";
 class AppDashboard extends React.PureComponent {
   constructor(props) {
@@ -47,8 +48,12 @@ class AppDashboard extends React.PureComponent {
               artistTagName={this.state.artistBackgroundData.artistTagName}
               artistBackgroundPic={this.state.artistBackgroundData.artistBackgroundImage}>
               <section className={styles.mainAlbumsContainer}>
-                <AlbumsView albumsData={this.props.albumsObj.albumsData.data.items} />
-                <SongsContainer />
+                <AlbumsView
+                  albumsData={this.props.albumsObj.albumsData.data.items}
+                  token={this.props.access_token}
+                  fetchSongs={this.props.onTracksSearch}
+                />
+                <SongsContainer songsData={this.props.songsObj.tracksData} />
               </section>
             </ArtistBackgroundPanel>
           ) : (
@@ -63,7 +68,8 @@ class AppDashboard extends React.PureComponent {
 const MapStateToProps = state => {
   return {
     searchData: state.search,
-    albumsObj: state.albums
+    albumsObj: state.albums,
+    songsObj: state.tracks
   };
 };
 
@@ -71,7 +77,8 @@ const MapDispatchToProps = dispatch => {
   return bindActionCreators(
     {
       onSearchArtist: (searchQuery, token) => searchArtist(searchQuery, token),
-      onSearchArtistAlbum: (artistID, token) => getArtistAlbum(artistID, token)
+      onSearchArtistAlbum: (artistID, token) => getArtistAlbum(artistID, token),
+      onTracksSearch: (albumid, token) => getTracks(albumid, token)
     },
     dispatch
   );

@@ -5,12 +5,13 @@ import logger from "redux-logger";
 import userReducer from "./actions/USER_AUTH_LOGIN/reducer";
 import searchReducer from "./actions/Dashboard/search/reducer";
 import albumReducer from "./actions/Dashboard/albums/reducer";
+import tracksReducer from "./actions/Dashboard/tracks/reducer";
 
 const rootReducer = combineReducers({
   user: userReducer,
   search: searchReducer,
   albums: albumReducer,
-  songs: {}
+  tracks: tracksReducer
 });
 
 const configureStore = initialState => createStore(rootReducer, initialState, compose(applyMiddleware(thunkMiddleware, logger)));

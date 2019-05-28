@@ -1,1 +1,49 @@
 @import "../app-global.module.scss";
+
+.songsSection {
+  width: 100%;
+  @include AlignTop;
+  flex-direction: column;
+  align-items: center;
+  height: auto;
+  max-height: 45vh;
+  padding: 1.2em;
+  margin-top: 0.2em;
+  overflow-y: scroll;
+  h2 {
+    color: black;
+    letter-spacing: 0.4px;
+    font-size: 1.2rem;
+    text-align: left;
+    margin-bottom: 0.5em;
+  }
+  .songsContainer {
+    @include gridMaker(3fr 1fr, "", 1em);
+    justify-items: center;
+    align-items: center;
+    width: 90%;
+    height: 40px;
+    margin-bottom: 0.8em;
+    background: $primary-bg-two-color;
+    transition: background cubic-bezier(0.075, 0.82, 0.165, 1) 0.4s;
+    cursor: pointer;
+    h1,
+    label {
+      color: white;
+      font-size: 0.88rem;
+      letter-spacing: 0.4px;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      text-align: left;
+    }
+    label {
+      text-align: right;
+    }
+    &:hover {
+      background: $primary-bg-player-color;
+      transition: background cubic-bezier(0.075, 0.82, 0.165, 1) 0.4s;
+    }
+  }
+}

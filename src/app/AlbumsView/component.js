@@ -15,6 +15,7 @@ export default class AlbumsView extends React.PureComponent {
             <div
               key={albumObj.id}
               className={styles.albumBoxContainer}
+              onClick={() => this.props.fetchSongs(albumObj.id, this.props.token)}
               style={{ background: `url(${albumBg}) no-repeat`, backgroundPosition: "center", backgroundSize: "cover" }}>
               <div className={styles.overlayAlbum}>
                 <ul>
