@@ -19,7 +19,7 @@ const LoginPanel = () => {
           Login Spotify
         </Button>
         <h5>
-          (Test Assignment App based on Spotify API - By&nbsp;&nbsp;
+          (Web Music App based on Spotify API - By&nbsp;&nbsp;
           <a href='mailto:sushantr134@gmail.com'>Sushant Singh</a>)
         </h5>
       </section>
