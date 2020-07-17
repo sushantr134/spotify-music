@@ -4,7 +4,10 @@ import logo from "../../../static/Spotify_logo.svg";
 
 import { Button } from "antd";
 
+import {CONFIGURATIONS_ENV} from "../../config.env";
+
 const LoginPanel = () => {
+  const {SERVER_URL} = CONFIGURATIONS_ENV;
   return (
     <>
       <section className={styles.loginContainer}>
@@ -12,7 +15,7 @@ const LoginPanel = () => {
           <img src={logo} alt='spotifyApp' />
         </picture>
         <h1>Spotify Music App</h1>
-        <Button type='success' size='large' href={`${process.env.SERVER_URL}/login`}>
+        <Button type='success' size='large' href={`${SERVER_URL}/login`}>
           Login Spotify
         </Button>
         <h5>
